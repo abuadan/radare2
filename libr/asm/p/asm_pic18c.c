@@ -180,7 +180,7 @@ static int pic_disassem(RAsm *a, RAsmOp *op, const ut8 *b, int l) {
 			return -1;
 		}
 		snprintf (op->buf_asm, R_ASM_BUFSIZE, "%s 0x%x", ops[i].name,
-			(dword_instr & 0xff) | ((dword_instr &  0xfff0000) >>8));
+			((dword_instr & 0xff) | ((dword_instr &  0xfff0000) >>8) )*2);
 		break;
 	}
 	case F32_T: {
@@ -230,7 +230,7 @@ RAsmPlugin r_asm_plugin_pic18c = {
 	.name = "pic18c",
 	.arch = "pic18c",
 	.license = "LGPL3",
-	.bits = 16,
+	.bits = 8,
 	.desc = "pic18c disassembler"};
 #ifndef CORELIB
 struct r_lib_struct_t radare_plugin = {
